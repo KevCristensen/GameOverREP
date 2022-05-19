@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameOver</title>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,600&display=swap" rel="stylesheet">
+    
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    {% block css %}
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'app/css/estilos.css' %}">
+    
+</head>
+<body>
+
+    
+    <header id="header">
+        <img class="menu" src="{% static 'app/img/menuiconwhite.png' %}" alt="menu" id="menu">
+        <div class="contenedor_logo">
+            <img  class="logo"  src="{% static 'app/img/gameoverlogo.png' %}" alt="logo">
+        </div>
+
+        <div>
+            
+            <nav id="nav">
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}"> Inicio </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contacto' %}">Contacto</a>
+                    </li>
+                    <li><a href="{% url 'galeria' %}">Galería</a></li>
+                    <li>
+                        <a href="{% url 'agregar_producto' %}">Agregar Producto</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'listar_productos' %}">Listado Productos</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <div id="contenido">
+
+        {% block contenido %}
+        {% endblock %}
+
+    </div>
+
+
+    <footer>
+        <div class="marcas">
+            <img src="{% static 'app/img/footer/play.png' %}" alt="play">
+            <img src="{% static 'app/img/footer/switch.png' %}" alt="switch">
+            <img src="{% static 'app/img/footer/xbox.png' %}" alt="xbox">
+            <img src="{% static 'app/img/footer/micro.png' %}" alt="micro">
+            <img src="{% static 'app/img/footer/steam.png' %}" alt="steam">
+        </div>
+        <div class="logo_footer">
+            <img src="{% static 'app/img/gameoverlogo.png' %}" alt="logo">
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+    <script src="{% static 'app/js/menu.js' %}"></script>
+
+    
+    {% block js %}
+    {% endblock %}
+
+</body>
+</html>
