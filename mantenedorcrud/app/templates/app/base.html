@@ -48,6 +48,14 @@
 
     <div id="contenido">
 
+        {% if messages %}
+
+            {% for m in messages %}
+                {{m}}
+            {% endfor %}
+
+        {% endif %}
+
         {% block contenido %}
         {% endblock %}
 
