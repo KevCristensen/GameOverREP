@@ -39,6 +39,18 @@
                     <li>
                         <a href="{% url 'listar_productos' %}">Listado Productos</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'logout' %}">Cerrar Sesión</a>
+                    </li>
+                    <li>
+                        <a href="#">@{{ user.username }}</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">Iniciar Sesión</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </nav>
 
@@ -48,13 +60,7 @@
 
     <div id="contenido">
 
-        {% if messages %}
-
-            {% for m in messages %}
-                {{m}}
-            {% endfor %}
-
-        {% endif %}
+        
 
         {% block contenido %}
         {% endblock %}
@@ -79,7 +85,22 @@
     
     <script src="{% static 'app/js/menu.js' %}"></script>
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
+    {% if messages %}
+
+        {% for m in messages %}
+            <script>
+                Swal.fire({
+                    "title": "Felicitaciones",
+                    "text": "{{m}}",
+                    "icon": "success"
+                })
+            </script>
+        {% endfor %}
+
+    {% endif %}
+
     {% block js %}
     {% endblock %}
 

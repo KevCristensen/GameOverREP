@@ -1,9 +1,12 @@
 from importlib.metadata import files
 from itertools import product
+from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Producto
 from .forms import ContactoForm, ProductoForm
 from django.contrib import messages
+from django.core.paginator import Paginator
+from django.http import Http404
 
 # Create your views here.
 
@@ -44,17 +47,24 @@ def agregar_producto(request):
         formulario = ProductoForm(data=request.POST, files=request.FILES)
     if formulario.is_valid():
         formulario.save()
-        data["mensaje"] = "guardado correctamente"
-    else: 
-        data["form"] = formulario
+        messages.success(request, "Producto Registrado")
 
     return render(request, 'app/producto/agregar.html', data)
 
 def listar_productos(request):
     productos = Producto.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(productos, 5)
+        productos = paginator.page(page)
+    except:
+        raise Http404
+
     
     data = {
-        'productos': productos
+        'entity': productos,
+        'paginator': paginator
     }
     return render(request, 'app/producto/listar.html', data)
 
@@ -80,4 +90,5 @@ def modificar_producto(request, id):
 def eliminar_producto(request, id):
     producto = get_object_or_404(Producto, id=id)
     producto.delete()
+    messages.success(request,"Eliminado Correctamente")
     return redirect(to="listar_productos")
