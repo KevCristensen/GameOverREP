@@ -3,7 +3,7 @@ from itertools import product
 from math import perm
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Producto
+from .models import Producto, Marca
 from .forms import ContactoForm, ProductoForm, CustomUserCreationForm
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -11,7 +11,15 @@ from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
 from rest_framework import viewsets
-from .serializers import ProductoSerializer
+from .serializers import ProductoSerializer, MarcaSerializer
+
+def error_facebook(request):
+    return render(request, 'registration/error_facebook.html')
+
+#Para crear otro serializer
+class MarcaViewset(viewsets.ModelViewSet):
+    queryset = Marca.objects.all()
+    serializer_class = MarcaSerializer
 
 
 # Create your views here.
