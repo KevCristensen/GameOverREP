@@ -13,6 +13,9 @@ from django.contrib.auth.decorators import login_required, permission_required
 from rest_framework import viewsets
 from .serializers import ProductoSerializer, MarcaSerializer
 
+def error_facebook(request):
+    return render(request, 'registration/error_facebook.html')
+
 #Para crear otro serializer
 class MarcaViewset(viewsets.ModelViewSet):
     queryset = Marca.objects.all()
