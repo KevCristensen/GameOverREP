@@ -1,10 +1,11 @@
 from django.urls import path, include
 from . views import home, contacto, galeria, agregar_producto, listar_productos, \
-    modificar_producto, eliminar_producto, registro, ProductoViewset
+    modificar_producto, eliminar_producto, registro, ProductoViewset, MarcaViewset
 from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('producto', ProductoViewset)
+router.register('marca', MarcaViewset)
 
 #localhost:8000/api/producto/
 
