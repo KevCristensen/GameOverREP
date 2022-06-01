@@ -28,10 +28,6 @@ header {
     justify-content: space-between;
 }
 
-header > div {
-    width: 50%;
-}
-
 .contenedor_logo {
     display: flex;
     align-items: center;
@@ -42,9 +38,9 @@ header > div {
     margin-left: 20px;
 }
 
-nav {
+/* nav {
     display: flex;
-    justify-content: flex-end;/*flex-start - center - flex-end*/ /*horizontal*/
+    justify-content: flex-end;/*flex-start - center - flex-end*/ /*horizontal
     align-items: center;
     height: 100%;
 }
@@ -61,7 +57,7 @@ nav > ul > li {
 nav a {
     color:white;
     text-decoration: none;
-}
+} */
 
 .galeria {
     display: grid;
@@ -233,8 +229,6 @@ textarea {
         height: 60px;
         overflow: hidden;
         transition: all 0.6s;
-       
-        
     }
     #contenido {
         margin-top: 60px;
