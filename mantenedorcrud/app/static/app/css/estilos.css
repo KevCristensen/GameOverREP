@@ -37,6 +37,10 @@ header > div {
     align-items: center;
 }
 
+.ijole {
+    width: 100px;
+    margin-left: 20px;
+}
 .logo {
     width: 100px;
     margin-left: 20px;

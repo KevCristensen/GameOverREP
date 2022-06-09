@@ -1,6 +1,7 @@
 from importlib.metadata import files
 from itertools import product
 from math import perm
+from operator import truediv
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Producto, Marca
@@ -12,7 +13,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
 from rest_framework import viewsets
 from .serializers import ProductoSerializer, MarcaSerializer
-
+from django.db.models import Q
 def error_facebook(request):
     return render(request, 'registration/error_facebook.html')
 
@@ -41,7 +42,14 @@ class ProductoViewset(viewsets.ModelViewSet):
 
 
 def home(request):
+    print(request.GET)
+    queryset = request.GET.get("buscar")
     productos = Producto.objects.all()
+    if queryset: 
+        productos = Producto.objects.filter(
+            Q(nombre__icontains = queryset)
+        ).distinct()
+
     data = {
         'productos': productos
     }
