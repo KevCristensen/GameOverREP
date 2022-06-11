@@ -1,2 +1,0 @@
-# GameOverREP
-Proyecto Sprint
