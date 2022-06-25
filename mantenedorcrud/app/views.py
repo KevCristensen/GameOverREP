@@ -4,7 +4,7 @@ from math import perm
 from operator import truediv
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Producto, Marca
+from .models import Categoria_videojuego, Producto, Marca
 from .forms import ContactoForm, ProductoForm, CustomUserCreationForm
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -37,7 +37,8 @@ class ProductoViewset(viewsets.ModelViewSet):
 
         if nombre:
             productos = productos.filter(nombre__contains = nombre) #izq columna, derecha el dato
-            #Ojo, el __contains me facilita la busqueda, si busco con "Uno", saldrán todos los resultados con la palabra "Uno" en ellas
+        #     #Ojo, el __contains me facilita la busqueda, si busco con "Uno", saldrán todos los resultados con la palabra "Uno" en ellas
+
         return productos
 
 
@@ -47,11 +48,17 @@ def home(request):
     productos = Producto.objects.all()
     if queryset: 
         productos = Producto.objects.filter(
-            Q(nombre__icontains = queryset)
+            Q(nombre__icontains = queryset) |
+            Q(categoria_videojuego__nombre_categoria_videojuego__icontains = queryset) |
+            Q(marca__nombre__icontains = queryset)
         ).distinct()
-
+    
+    categorias_videojuego = Categoria_videojuego.objects.all()
+    marcas = Marca.objects.all()
     data = {
-        'productos': productos
+        'productos': productos, 
+        'marca': marcas, 
+        'categoria_videojuego': categorias_videojuego
     }
     return render(request, 'app/home.html', data)
 

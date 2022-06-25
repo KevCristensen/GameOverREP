@@ -6,11 +6,11 @@
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script>
     $(document).ready(function() {
-      $('.slider').bxSlider({
-          mode: 'fade',//horizontal, vertical, fade
-          auto: true,
-          pause: 2000
-      });
+        $('.slider').bxSlider({
+            mode: 'fade',//horizontal, vertical, fade
+            auto: true,
+            pause: 2000
+        });
     });
 </script>
 {% endblock %}
@@ -32,30 +32,59 @@
         <img src="{% static 'app/img/banner/banner3.png' %}" alt="">
     </div>
 </div>
+
 {% load humanize %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Categorias</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categorias de Videojuegos
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        {% for cv in categoria_videojuego %}
+                        <li><a class="dropdown-item" href="/?buscar={{cv.nombre_categoria_videojuego}}">{{cv.nombre_categoria_videojuego}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Marcas
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        {% for m in marca %}
+                        <li><a class="dropdown-item" href="/?buscar={{m.nombre}}">{{m.nombre}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
 <h2>Productos</h2>
 <div class="productos">
     {% for p in productos %}
-
-<div class="producto">
-
-    <div class="contenedor_producto">
-        {% if p.imagen %}
-        <img src="{{ p.imagen.url }}" alt="imagen producto">
-        {% endif %}
-        <div class="detalle">
-            <h5>{{ p.marca | capfirst }}</h5>
-            <h2>{{ p.nombre | title }}</h2>
-            <h3>${{ p.precio | intcomma}}</h3>
+    <div class="producto">
+        <div class="contenedor_producto">
+            {% if p.imagen %}
+            <img src="{{ p.imagen.url }}" alt="imagen producto">
+            {% endif %}
+            <div class="detalle">
+                <h5>{{ p.marca | capfirst }}</h5>
+                <h2>{{ p.nombre | title }}</h2>
+                <h3>${{ p.precio | intcomma}}</h3>
+            </div>
         </div>
-
     </div>
-
+    {% endfor %}        
 </div>
 
-{% endfor %}
-
-
-
-</div>
 {% endblock %}

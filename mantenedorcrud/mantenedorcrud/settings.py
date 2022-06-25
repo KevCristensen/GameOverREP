@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'social_django',
+    'django_browser_reload',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -70,7 +71,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware', 
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 ROOT_URLCONF = 'mantenedorcrud.urls'
@@ -97,7 +99,7 @@ TEMPLATES = [
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link'] 
 
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {  
-  'fields': 'id, name, email, picture.type(large), link'
+    'fields': 'id, name, email, picture.type(large), link'
 }
 
 
