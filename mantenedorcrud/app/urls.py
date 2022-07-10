@@ -1,6 +1,7 @@
 from django.urls import path, include
-from . views import home, contacto, galeria, agregar_producto, listar_productos, \
-    modificar_producto, eliminar_producto, registro, ProductoViewset, MarcaViewset, error_facebook
+from . views import home, contacto, galeria, agregar_producto, info_producto, listar_productos, \
+    modificar_producto, eliminar_producto, registro, ProductoViewset, MarcaViewset, error_facebook, \
+    info_producto
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -20,4 +21,5 @@ urlpatterns = [
     path('registro', registro, name = "registro"),
     path('api/', include(router.urls)),
     path('error-facebook/', error_facebook, name="error_facebook"),
+    path('info-producto/<id>', info_producto, name="info_producto")
 ]

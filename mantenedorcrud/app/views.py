@@ -118,7 +118,6 @@ def listar_productos(request):
 
 @permission_required('app.change_producto')
 def modificar_producto(request, id):
-
     producto = get_object_or_404(Producto, id=id)
 
     data = {
@@ -133,7 +132,6 @@ def modificar_producto(request, id):
             return redirect(to="listar_productos")
         data["form"] = formulario
 
-        
     return render(request, 'app/producto/modificar.html', data)
 
 @permission_required('app.delete_producto   ')
@@ -159,3 +157,10 @@ def registro(request):
             return redirect(to = "home")
         data["form"] = formulario
     return render(request, 'registration/registro.html', data)
+
+def info_producto(request, id):
+    producto = get_object_or_404(Producto, id=id)
+
+    datos = {'producto': producto}
+
+    return render(request, 'app/producto.html', datos)

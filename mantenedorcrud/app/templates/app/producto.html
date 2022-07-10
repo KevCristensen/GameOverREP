@@ -1,0 +1,92 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.slider').bxSlider({
+            mode: 'fade',//horizontal, vertical, fade
+            auto: true,
+            pause: 2000
+        });
+    });
+</script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+{% endblock %}
+
+{% block contenido %}
+
+{% load humanize %}
+<br>
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+            
+        </div>
+        <div class="col" style="align-items: center;">
+            <br>
+            <h2 style="color: white; text-align: center;">{{ producto.nombre | title }}</h2>
+            <img style="width: 400px; height: 520px;border-radius: 10px;margin: 30px; box-shadow: 0 1rem 2rem black;" src="{{ producto.imagen.url }}" alt="{{ producto.nombre | title }}">                                                                                                                                                                                                                             
+        </div>
+        <div class="col-md-6 pane">
+            <div class="col-md-8">
+                <form>
+                    <div class="form-group" style="color: white; text-align: center;">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <label style="margin-bottom: 5px;">Nombre</label>
+                        <input class="form-control" type="text"  id="name">
+                    </div>
+                    <br>
+                    <div class="form-group" style="color: white; text-align: center;">
+                        <label style="margin-bottom: 5px;">Comentario</label>
+                        <textarea id="comment" class="form-control"></textarea>
+                    </div>
+                    <br>
+                    <div class="form-group" style="text-align: center;">
+                        <label for="valoracion" class="form-label" style="color: white;">Valoracion</label>
+                        <input type="range" class="form-range" min="1" max="5" id="valoracion">
+                    </div>
+                    <br>
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-primary" onclick="commentBox();">Enviar</button>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            </div>
+            <h4 style="text-align: center; color: white;">Comentarios</h4>
+            <div class="container">
+                <div class="row align-items-start" style="background-color: white; align-items: center; border-radius: 10px;">
+                    <div class="col">
+                        <div>
+                            <hr>
+                            <div id="result">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+            <script src="{% static 'app/js/comentarios.js' %}"></script>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

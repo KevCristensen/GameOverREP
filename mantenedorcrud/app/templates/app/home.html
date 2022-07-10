@@ -20,7 +20,7 @@
 {% endblock %}
 
 {% block contenido %}
-
+<br>
 <div class="slider">
     <div>
         <img src="{% static 'app/img/banner/banner1.png' %}" alt="">
@@ -34,53 +34,29 @@
 </div>
 
 {% load humanize %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Categorias</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Categorias de Videojuegos
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                        {% for cv in categoria_videojuego %}
-                        <li><a class="dropdown-item" href="/?buscar={{cv.nombre_categoria_videojuego}}">{{cv.nombre_categoria_videojuego}}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Marcas
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                        {% for m in marca %}
-                        <li><a class="dropdown-item" href="/?buscar={{m.nombre}}">{{m.nombre}}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
-
-
-<h2>Productos</h2>
+<br>
+<br>
 <div class="productos">
     {% for p in productos %}
     <div class="producto">
-        <div class="contenedor_producto">
-            {% if p.imagen %}
-            <img src="{{ p.imagen.url }}" alt="imagen producto">
-            {% endif %}
-            <div class="detalle">
-                <h5>{{ p.marca | capfirst }}</h5>
-                <h2>{{ p.nombre | title }}</h2>
-                <h3>${{ p.precio | intcomma}}</h3>
+        <div class="col-lg-4 col-md-12 mb-4">
+            <div class="card-section border rounded ml-4 mr-4">
+                <div class="card-header card-header-second rounded">
+                    <br>
+                    <h2 class="card-header-title mb-3 mt-1 text-white">{{ p.nombre | title }}</h2>
+                </div>
+                <div class="card-body text-center">
+                    {% if p.imagen %}
+                    <img src="{{ p.imagen.url }}" alt="imagen producto">
+                    {% endif %}
+                    <br>
+                    <h5 class="card-text">{{ p.marca | capfirst }}</h5>
+                    <h2 class="card-text">${{ p.precio | intcomma}}</h2>    
+                    <a href="{% url 'info_producto' p.id %}" class="btn btn-lg btn-secondary">Mas Info.</a>
+                    <br>
+                    <br>
+                </div>
             </div>
         </div>
     </div>

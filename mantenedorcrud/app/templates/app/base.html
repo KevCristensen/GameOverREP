@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameOver</title>
-    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
     
     {% load static %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -15,7 +17,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #c46800;" aria-label="Barra Naegacion">
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #38147c; " aria-label="Barra Naegacion">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}"><img  class="img-fluid logo"  src="{% static 'app/img/gameoverlogo.png' %}" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#barra-navegacion" aria-controls="barra-navegacion" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,6 +49,7 @@
                     </li>
                     {% endif %}
                 </ul>
+                
                 <div class="row">
                     <!-- <form action="" method="get">
                         <div id="custom-search-input">
@@ -105,7 +108,39 @@
             </div>
         </div>
     </nav>
-
+    
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #200c44;">
+        <div class="container">
+            <a class="navbar-brand" href="#">Categorias</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorias de Videojuegos
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            {% for cv in categoria_videojuego %}
+                            <li><a class="dropdown-item" href="/?buscar={{cv.nombre_categoria_videojuego}}">{{cv.nombre_categoria_videojuego}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Marcas
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            {% for m in marca %}
+                            <li><a class="dropdown-item" href="/?buscar={{m.nombre}}">{{m.nombre}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <div id="contenido">
         
